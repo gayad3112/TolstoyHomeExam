@@ -48,7 +48,7 @@ function App() {
       <h1>Gaya's Metadata Fetcher</h1>
       <h4>Enter any URL below to fetch it's metadata (minimum 3 URL's)</h4>
         <Form onSubmit={fetchData} />
-        <div className="cards-container">
+        <div className='card-container'>
             {data.length > 0 && data.map((item, index) => (
                 <Card key={index} data={item} />
             ))}

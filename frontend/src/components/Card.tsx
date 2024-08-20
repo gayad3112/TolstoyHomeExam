@@ -1,5 +1,4 @@
 import React from 'react';
-import './Card.css';
 
 interface MetadataItem {
   title: string;
@@ -11,7 +10,7 @@ interface CardProps {
   data: MetadataItem | undefined;
 }
 
-const Card: React.FC<CardProps> = ({ data }) => {
+const Card = ({ data }:CardProps) => {
   if (!data) return null;
   else if (data.title === '' && data.image === '' && data.description === ''){
     return(

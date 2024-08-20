@@ -1,11 +1,9 @@
 import express from "express";
-import urlMetadata from "url-metadata";
 import { rateLimit } from "express-rate-limit";
 import { xss } from "express-xss-sanitizer";
 import helmet from "helmet";
 import cors from "cors";
-
-
+import fetchMetadata from './metadataService.js';
 
 const app = express();
 const port = 3000;
@@ -30,18 +28,17 @@ app.get('/', (req, res) => {
 });
 
 app.post('/fetch-metadata', async (req, res) => {
-    const urls = req.body.urls;
-    
-    try {
-      const metadataPromises = urls.map(url => urlMetadata(url));
-      const metadataList = await Promise.all(metadataPromises);
-      res.json(metadataList); 
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error fetching metadata' });
-    }
-  });
+  const urls = req.body.urls;
+  try {
+    const metadataList = await fetchMetadata(urls);
+    console.log(metadataList.length);
+    res.json(metadataList); 
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+export default app;
