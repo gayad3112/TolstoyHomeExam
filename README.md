@@ -1,4 +1,4 @@
-# Project Name
+# Gaya's Metadata Fetcher
 
 ## Description
 URL Metadata Fetcher is a full-stack web application designed to fetch and display metadata for a list of URLs. The application consists of a React front-end and a Node.js back-end.
